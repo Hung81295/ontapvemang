@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý danh sách công việc</title>
+</head>
+<body>
+<script>
+  let congViec = [];
+  while (true) {
+    let luaChon = prompt(`---MENU---
+1. Thêm công việc
+2. Xóa công việc
+3. Xem danh sách
+4. Thoát
+Chọn:`)
+    if (luaChon === "1") {
+      let ten=prompt(`Nhập tên công việc:`);
+      if(congViec.includes(ten)){
+        alert("Công việc đã tồn tại!");
+      }else {
+        congViec.push(ten);
+        alert(`Đã thêm:${ten}`);
+      }
+    } else if (luaChon === "2") {
+      let ten=prompt(`Nhập tên công việc muốn xóa:`);
+      let viTri=congViec.indexOf(ten);
+      if(viTri===-1){
+        alert(`Không tìm thấy`)
+      }else {
+        congViec.splice(viTri,1);
+        alert(`Đã xóa: ${ten}`);
+      }
+    } else if (luaChon === "3") {
+      let danhSach="";
+      for (let i = 0; i < congViec.length; i++) {
+        danhSach+=(i+1)+"."+congViec[i]+"\n"
+      }
+      alert(danhSach);
+    } else if (luaChon === "4") {
+      break;
+    }
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>shim học sinh</title>
+</head>
+<body>
+<script>
+  let tenHs = [];
+  let diemHs = [];
+  while (true) {
+    let ten = prompt("Nhap ten (go 'xong' de dung):");
+    if (ten === 'xong') {
+      break;
+    }
+    let diem;
+    while (true) {
+      diem = Number(prompt(`Nhap diem cua ${ten};`));
+      if (diem < 0 || diem > 10 || isNaN(diem)) {
+        alert("Nhap lai!");
+      } else {
+        break;
+      }
+
+    }
+    tenHs.push(ten);
+    diemHs.push(diem);
+  }
+
+  function xepLoai(diem) {
+    if (diem >= 9) return "Xuat sac";
+    else if (diem >= 7) return "kha";
+    else if (diem >= 5) return "Trung binh"
+    else return "Yeu"
+  }
+
+  for (let i = 0; i < tenHs.length; i++) {
+    console.log(`${(i + 1)} . ${tenHs[i]}: ${diemHs[i]}--- ${xepLoai(diemHs[i])}`)
+  }
+  let tong = 0;
+  let trungBinh;
+  for (let i = 0; i < diemHs.length; i++) {
+    tong += diemHs[i];
+  }
+  trungBinh = tong / diemHs.length
+  console.log(`Diem trung binh la: ${trungBinh} diem`);
+  let diemMax = diemHs[0];
+  let tenMax = tenHs[0];
+  for (let i = 0; i < diemHs.length; i++) {
+    if (diemHs[i] > diemMax) {
+      diemMax = diemHs[i];
+      tenMax = tenHs[i];
+    }
+  }
+  console.log(`Diem cao nhat la: ${tenMax} voi so diem ${diemMax}`)
+</script>
+</body>
+</html>

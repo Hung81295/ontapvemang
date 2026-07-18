@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>quản lý kho hang</title>
+</head>
+<body>
+<script>
+  let tenSP = [];
+  let soLuong = [];
+  while (true) {
+    let ten = prompt(`Nhập tên sản phẩm(khi nào dừng thì gõ 'xong'`);
+    if (ten === "xong") break;
+    let so;
+    while (true) {
+      so = Number(prompt(`Nhập số lượng sản phẩm của ${ten}`));
+      if (so < 0) {
+        alert(`Nhập lại!`);
+      } else {
+        break;
+      }
+    }
+    tenSP.push(ten);
+    soLuong.push(so);
+  }
+
+  function xepLoai(so) {
+    if (so >= 100) return "Đủ hàng";
+    else if (so >= 50) return "Sắp hết";
+    else return "Cần nhập thêm"
+  }
+
+  for (let i = 0; i < tenSP.length; i++) {
+    console.log(`${(i + 1)}. ${tenSP[i]}: ${soLuong[i]}-- ${xepLoai(soLuong[i])}`);
+  }
+  let tong = 0;
+  for (let i = 0; i < soLuong.length; i++) {
+    tong += soLuong[i]
+  }
+  console.log(`Tồng sản phẩm là: ${tong} cái`);
+  let soMax = soLuong[0];
+  let tenMax = tenSP[0];
+  for (let i = 0; i < soLuong.length; i++) {
+    if (soLuong[i] > soMax) {
+      soMax = soLuong[i];
+      tenMax = tenSP[i];
+    }
+  }
+  console.log(`Nhiều nhất là: ${tenMax}--${soMax} cái`);
+  let soMin = soLuong[0];
+  let tenMin = tenSP[0];
+  for (let i = 0; i < soLuong.length; i++) {
+    if (soLuong[i] < soMin) {
+      soMin = soLuong[i];
+      tenMin = tenSP[i];
+    }
+  }
+  console.log(`Ít nhất: ${tenMin}--${soMin} cái`);
+</script>
+</body>
+</html>

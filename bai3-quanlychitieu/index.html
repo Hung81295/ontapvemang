@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý chi tiêu</title>
+</head>
+<body>
+<script>
+  let hangMuc = [];
+  let soTien = [];
+  while (true) {
+    let loai = prompt(`Nhập hạng mục chi tiêu vào đây (khi kết thúc nhập hãy nhập 'xong'`);
+    if (loai === "xong") break;
+    let tien;
+    while (true) {
+      tien = Number(prompt(`Nhập tiền của ${loai} vào đây`));
+      if (tien < 0 || isNaN(tien)) {
+        alert(`Nhập lại!`);
+      } else {
+        break;
+      }
+    }
+    hangMuc.push(loai);
+    soTien.push(tien);
+  }
+
+  function xepLoai(tien) {
+    if (tien > 1000000) return "Cao";
+    else if (tien > 500000) return "Trung bình";
+    else return "Thấp";
+  }
+
+  for (let i = 0; i < hangMuc.length; i++) {
+    console.log(`${(i + 1)}. ${hangMuc[i]}: ${soTien[i]}đ--${xepLoai(soTien[i])}`);
+  }
+  let tong = 0;
+  for (let i = 0; i < soTien.length; i++) {
+    tong += soTien[i]
+  }
+  console.log(`Tổng số tiền đã tiêu là: ${tong}đ`);
+  let tienMax = soTien[0];
+  let loaiMax = hangMuc[0];
+  for (let i = 0; i < soTien.length; i++) {
+    if (soTien[i] > tienMax) {
+      tienMax = soTien[i];
+      loaiMax = hangMuc[i];
+    }
+  }
+  console.log(`Khoảng chi nhiều nhất là:${loaiMax} -- ${tienMax}đ`);
+  let tienMin = soTien[0];
+  let loaiMin = hangMuc[0];
+  for (let i = 0; i < soTien.length; i++) {
+    if (soTien[i] < tienMin) {
+      tienMin = soTien[i];
+      loaiMin = hangMuc[i];
+    }
+  }
+  console.log(`Khoảng chi ít nhất là:${loaiMin} -- ${tienMin}đ`);
+  let dem = 0;
+  for (let i = 0; i < soTien.length; i++) {
+    if (soTien[i] > 500000) {
+      dem++;
+    }
+  }
+  console.log(`Số lần chi tiêu vượt mức là: ${dem}`)
+</script>
+</body>
+</html>
