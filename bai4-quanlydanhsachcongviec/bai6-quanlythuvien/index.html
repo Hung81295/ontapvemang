@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý thư viện</title>
+</head>
+<body>
+<script>
+  let tenSach = [];
+  let tacGia = [];
+  let namXB = [];
+  while (true) {
+    let thuVien = prompt(`---THƯ VIỆN---
+    1. Thêm sách( tên + tác giả + năm xuất bản)
+    2. Xóa sách(theo tên)
+    3. Tìm sách(theo tên-> hiện thông tin)
+    4. Xem toàn bộ sách
+    5. Thoát`)
+    if (thuVien === "1") {
+      let ten = prompt(`Nhập tên`);
+      if (tenSach.includes(ten)) {
+        alert(`Sách đã nhập!`)
+      } else {
+        let tenTG = prompt(`Nhập tên tác giả của ${ten}`);
+        let nam = prompt(`Nhập năm xuất bản của ${ten}`);
+        tenSach.push(ten);
+        tacGia.push(tenTG);
+        namXB.push(nam);
+      }
+    } else if (thuVien === "2") {
+      let ten = prompt(`Nhâp tên sách muốn xóa`);
+      let viTri = tenSach.indexOf(ten);
+      if (viTri === -1) {
+        alert(`Sách không tồn tại`)
+      } else {
+        tenSach.splice(viTri, 1);
+        tacGia.splice(viTri, 1);
+        namXB.splice(viTri, 1);
+        alert(`Đã xóa ${ten}`)
+      }
+    } else if (thuVien === "3") {
+      let ten = prompt(`Nhập tên sách muốn tìm`);
+      let viTri = tenSach.indexOf(ten);
+      if (viTri === -1) {
+        alert(`Sách không tồn tại`)
+      } else {
+        alert(`Tên sách là: ${tenSach[viTri]} - của tác giả ${tacGia[viTri]} sáng tác vào năm ${namXB[viTri]}`);
+      }
+    } else if (thuVien === "4") {
+      let toanBo = "";
+      for (let i = 0; i < tenSach.length; i++) {
+        toanBo += `${(i + 1)}. ${tenSach[i]} - ${tacGia[i]} (${namXB[i]}) \n`;
+      }
+      alert(toanBo)
+    } else {
+      break;
+    }
+  }
+</script>
+</body>
+</html>

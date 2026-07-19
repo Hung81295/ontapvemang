@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>quản lý danh sách liên lạc</title>
+</head>
+<body>
+<script>
+  let lienLac = [];
+  let soDT = [];
+  while (true) {
+    let danhSach = prompt(`
+  ---MENU---
+  1. Thêm liên lạc(tên + số điện thoại)
+  2. Xóa liên lạc(theo tên)
+  3. Tìm kiếm (nhập tên-> hiện số điên thoại)
+  4. Xem toàn bộ danh sách
+  5. Thoát
+  `)
+    if (danhSach === "1") {
+      let ten = prompt(`Nhập tên`);
+      if (lienLac.includes(ten)) {
+        alert(`Tên đã tồn tại!`);
+      } else {
+        let so = prompt(`Nhập số điện thoại của ${ten}`)
+        if (soDT.includes(so)) {
+          alert(`Số đã tồn tại!`)
+        } else {
+          lienLac.push(ten);
+          soDT.push(so)
+          alert(`Đã thêm liên lạc mới!`)
+        }
+      }
+    } else if (danhSach === "2") {
+      let ten = prompt(`Nhập tên liên lạc muốn xóa`);
+      let viTri = lienLac.indexOf(ten);
+      if (viTri === -1) {
+        alert(`Không tìm thấy!`)
+      } else {
+        lienLac.splice(viTri, 1);
+        soDT.splice(viTri, 1);
+        alert(`Đã xóa ${ten}`)
+      }
+
+    } else if (danhSach === "3") {
+      let ten = prompt(`Nhập tên muốn tìm kiếm`);
+      let viTri = lienLac.indexOf(ten);
+      if (viTri === -1) {
+        alert(`Không tìm thấy!`)
+      } else {
+        alert(`Số điện thoại là: ${soDT[viTri]}`)
+      }
+    } else if (danhSach === "4") {
+      let cacLL = "";
+      for (let i = 0; i < lienLac.length; i++) {
+        cacLL += (i + 1) + "." + lienLac[i] + soDT[i] + "\n"
+      }
+      alert(cacLL);
+    } else {
+      break;
+    }
+
+  }
+</script>
+</body>
+</html>
